@@ -1,0 +1,41 @@
+#N canvas 132 79 784 490 10;
+#X symbolatom 19 292 80 0 0 0 - - -;
+#X symbolatom 381 65 10 0 0 0 - - -;
+#X msg 122 119 next;
+#X msg 82 21 symbol /Users/dfine/Music/Annette/*.mp3;
+#X obj 87 49 folder_list /*;
+#X obj 193 135 msgfile;
+#X obj 195 99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 125 85 add \$1;
+#X msg 237 94 goto 3;
+#X obj 70 106 print;
+#X msg 288 105 where;
+#X msg 215 56 flush;
+#X floatatom 229 192 5 0 0 0 - - -;
+#X obj 188 173 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 157 228 counter 0 1111;
+#X floatatom 161 256 5 0 0 0 - - -;
+#X obj 199 198 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 285 67 end;
+#X obj 71 189 print;
+#X msg 348 116 clear;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 4 0 9 0;
+#X connect 5 0 0 0;
+#X connect 5 0 13 0;
+#X connect 5 0 18 0;
+#X connect 5 1 12 0;
+#X connect 6 0 5 0;
+#X connect 7 0 5 0;
+#X connect 8 0 5 0;
+#X connect 10 0 5 0;
+#X connect 11 0 5 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 16 0 14 3;
+#X connect 17 0 5 0;
+#X connect 19 0 5 0;
