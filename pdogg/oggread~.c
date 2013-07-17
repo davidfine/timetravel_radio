@@ -1,6 +1,7 @@
 
 /* ------------------------- oggread~ ------------------------------------------ */
 /*                                                                              */
+/* Modified by dfine to add track length outlet  */
 /* Tilde object to read and play back Ogg Vorbis files.                         */
 /* Written by Olaf Matthes (olaf.matthes@gmx.de)                                */
 /* Get source at http://www.akustische-kunst.de/puredata/                       */
@@ -81,9 +82,6 @@ typedef struct _oggread
 	vorbis_block     x_vb;    /* local working space for packet->PCM decode */
 	t_int            x_eos;   /* end of stream */
     char            *x_buffer;/* buffer used to pass on data to ogg/vorbis */
-# df added
-    t_float    x_playtime;
-    t_outlet    *x_playtime;
     
 	t_float   x_position;     /* current playing position */
     t_outlet *x_out_position; /* output to send them to */
@@ -240,8 +238,8 @@ static void oggread_start(t_oggread *x)
 		x->x_outwriteposition = 0;
 		x->x_outunread = 0;
 		x->x_position = 0;
-        x->x_length = (long)ov_time_total(&x->x_ov,-1));
-        outlet_float(x->x_out_length, x->x_length);
+        	x->x_length = (long)ov_time_total(&x->x_ov,-1);
+        	outlet_float(x->x_out_length, x->x_length);
 
 		clock_delay(x->x_clock, 0);
 		x->x_stream = 1;
@@ -379,8 +377,6 @@ static void *oggread_new(t_floatarg fdographics)
     outlet_new(&x->x_obj, gensym("signal"));
     outlet_new(&x->x_obj, gensym("signal"));
     x->x_out_position = outlet_new(&x->x_obj, gensym("float"));
-#df added
-    x->x_playtime = outlet_new(&x->x_obj, gensym("float"));
     
     
     x->x_out_end      = outlet_new(&x->x_obj, gensym("bang"));
@@ -426,6 +422,5 @@ void oggread_tilde_setup(void)
     class_addmethod(oggread_class, (t_method)oggread_resume, gensym("resume"), 0);
     class_addmethod(oggread_class, (t_method)oggread_seek, gensym("seek"), A_DEFFLOAT, 0);
     class_addmethod(oggread_class, (t_method)oggread_stop, gensym("stop"), 0);
-    class_addmethod(oggread_class, (t_method)oggread_length, gensym("length"), 0);
 
 }
