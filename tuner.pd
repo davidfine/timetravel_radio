@@ -1,0 +1,124 @@
+#N canvas 298 90 1027 724 10;
+#X floatatom 141 307 5 0 0 0 - - -;
+#X obj 43 52 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 45 124 counter 0 1024;
+#X floatatom 504 251 5 0 0 0 - - -;
+#X obj 508 160 hsl 200 15 0 1024 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 13312 1;
+#X floatatom 412 138 5 0 0 0 - - -;
+#X obj 158 -1 inlet;
+#X obj 213 2 inlet;
+#X obj 505 280 outlet;
+#X obj 460 354 loadbang;
+#X obj 505 99 inlet;
+#X text 319 35 Inlets: Station Freq \, Power \, Dial Position;
+#X text 324 54 Outlet: How in tune at current dial position.;
+#X floatatom 157 91 5 0 0 0 - - -;
+#X floatatom 263 85 5 0 0 0 - - -;
+#X floatatom 41 345 5 0 0 0 - - -;
+#X obj 43 78 metro 1;
+#X obj 41 425 tabwrite \$0-thisstation;
+#X obj 504 216 tabread \$0-thisstation;
+#X obj 458 405 f \$0;
+#X obj 459 380 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 302 449 \; \$1-thisstation resize 1024;
+#X msg 493 446 \; \$1-thisstation bounds 0 100 1024 0;
+#X floatatom 427 220 5 0 0 0 - - -;
+#X floatatom 575 128 5 0 0 0 - - -;
+#X obj 505 185 int;
+#X obj 47 192 expr int(100 - abs($f1 - $f2) * 100 / $f3);
+#X obj 46 258 max 0;
+#X obj 168 364 spigot;
+#X obj 191 389 tabwrite allradios;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-thisstation 1023 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 1 3 5 6 8 10 12 13 15 17 18 20 22 24 25 27 29 31 32 34
+36 37 39 41 43 44 46 48 50 51 53 55 56 58 60 62 63 65 67 68 70 72 74
+75 77 79 81 82 84 86 87 89 91 93 94 96 98 100 98 96 94 93 91 89 87
+86 84 82 81 79 77 75 74 72 70 68 67 65 63 62 60 58 56 55 53 51 50 48
+46 44 43 41 39 37 36 34 32 31 29 27 25 24 22 20 18 17 15 13 12 10 8
+6 5 3 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#A 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 100 1022 1 200 140 1;
+#X restore 623 278 graph;
+#N canvas 212 83 561 563 initstation 1;
+#X obj 74 5 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 74 32 loadbang;
+#X obj 76 100 f \$0;
+#X obj 76 160 t f f f f f f f;
+#X msg 82 280 \; \$1-thisstation delete;
+#X msg 79 235 \; \$1-thisstation resize 1023;
+#X msg 84 419 \; \$1-thisstation yticks 10 10 100;
+#X msg 84 461 \; \$1-thisstation xticks 100 100 1000;
+#X msg 77 193 \; \$1-thisstation bounds 1 100 1000 1;
+#X msg 83 328 \; \$1-thisstation xlabel 100 200 400 600 800;
+#X msg 84 373 \; \$1-thisstation ylabel 10 25 50 75;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 8 0;
+#X connect 3 1 5 0;
+#X connect 3 2 4 0;
+#X connect 3 3 9 0;
+#X connect 3 4 10 0;
+#X connect 3 5 6 0;
+#X connect 3 6 7 0;
+#X restore 41 465 pd initstation;
+#X connect 0 0 17 1;
+#X connect 0 0 29 1;
+#X connect 1 0 16 0;
+#X connect 2 0 0 0;
+#X connect 2 0 26 0;
+#X connect 2 2 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 23 0;
+#X connect 4 0 25 0;
+#X connect 5 0 18 0;
+#X connect 6 0 1 0;
+#X connect 6 0 13 0;
+#X connect 7 0 14 0;
+#X connect 9 0 20 0;
+#X connect 10 0 4 0;
+#X connect 13 0 26 1;
+#X connect 14 0 26 2;
+#X connect 15 0 17 0;
+#X connect 15 0 28 1;
+#X connect 15 0 28 0;
+#X connect 16 0 2 0;
+#X connect 18 0 3 0;
+#X connect 19 0 21 0;
+#X connect 19 0 22 0;
+#X connect 20 0 19 0;
+#X connect 25 0 18 0;
+#X connect 26 0 27 0;
+#X connect 27 0 15 0;
+#X connect 28 0 29 0;

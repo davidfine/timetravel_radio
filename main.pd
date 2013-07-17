@@ -1,9 +1,8 @@
-#N canvas 557 100 537 499 10;
-#N canvas 699 232 593 372 echomode 1;
+#N canvas 224 95 990 576 10;
+#N canvas 691 228 593 372 echomode 0;
 #X obj 126 138 *~;
 #X text 265 1 Enable to Play back microphone audio with delay.;
 #X obj 71 62 adc~ 1;
-#X obj 476 149 inlet;
 #X obj 157 6 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 157 37 loadbang;
@@ -11,165 +10,215 @@
 0.75;
 #X obj 72 94 lop~ 600;
 #X obj 156 72 metroplus 10000 2000;
-#X obj 96 185 delwrite~ echo 2000;
-#X obj 345 166 delread~ echo 2000;
-#X obj 474 177 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X obj 345 191 spigot~;
-#X obj 467 210 outlet~;
-#X text 468 231 to DAC;
+#X obj 118 227 delwrite~ echo 2000;
+#X obj 409 193 outlet~;
+#X text 468 194 to DAC;
 #X text 36 312 The metronome occasionally clears out buffer so as to
 eliminate feedback loops.;
 #X obj 70 156 sig~;
 #X floatatom 45 130 5 0 0 0 - - -;
-#X floatatom 345 126 5 0 0 0 - - -;
-#X obj 303 252 lop~;
-#X floatatom 270 195 5 0 0 0 - - -;
-#X obj 161 248 timer;
-#X connect 0 0 9 0;
-#X connect 2 0 7 0;
-#X connect 3 0 11 0;
-#X connect 4 0 5 0;
-#X connect 5 0 8 0;
-#X connect 6 0 0 1;
-#X connect 7 0 0 0;
-#X connect 10 0 12 0;
-#X connect 11 0 12 1;
-#X connect 12 1 19 0;
-#X connect 16 0 9 0;
-#X connect 17 0 16 0;
-#X connect 18 0 10 0;
-#X connect 19 0 13 0;
-#X connect 20 0 19 1;
-#X restore 391 383 pd echomode;
-#X obj 18 89 hsl 128 15 0 1024 0 0 empty empty empty -2 -8 0 10 -261234
--1 -1 0 1;
-#N canvas 284 95 1052 460 radios 1;
-#N canvas 410 97 803 735 initStations 0;
-#X obj 414 125 msgfile;
-#X symbolatom 459 186 55 0 0 0 - - -;
-#X msg 412 92 add \$1;
-#X obj 412 68 folder_list;
-#X floatatom 502 156 5 0 0 0 - - -;
-#X obj 304 437 s goto;
-#X obj 241 31 r goto;
-#X obj 376 449 pack f s f f;
-#X obj 389 319 t b b b;
-#X obj 388 289 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 408 -41 loadbang;
-#X obj 420 350 urn 12;
-#X obj 420 375 expr $f1 * 100;
-#X obj 522 348 random 10;
-#X obj 524 375 expr $f1 + 5;
-#X obj 369 157 s station;
-#X obj 361 411 r station;
-#X msg 378 351 clear;
-#X obj 79 588 outlet;
-#X obj 126 588 outlet;
-#X obj 174 588 outlet;
-#X obj 221 588 outlet;
-#X obj 268 588 outlet;
-#X obj 315 588 outlet;
-#X obj 363 588 outlet;
-#X obj 410 588 outlet;
-#X obj 457 588 outlet;
-#X obj 504 588 outlet;
-#X obj 552 588 outlet;
-#X obj 599 588 outlet;
-#X obj 375 485 route 0 1 2 3 4 5 6 7 8 9 10 11;
-#X obj 599 534 print too_many_stations;
-#X msg 249 120 end \, where;
-#X msg 276 152 clear;
-#X msg 242 78 goto \$1 \, this \, end \, where;
-#X floatatom 230 429 5 0 0 0 - - -;
-#X obj 303 386 counter 0 0 1;
-#X obj 384 226 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 361 196 loadbang;
-#X obj 304 210 inlet;
-#X text 293 231 load stations;
-#X text 32 -38 This searches a directory of folders (one per station)
-and outputs a message as "folder freq signal" to each outlet in sequence.
-;
-#X obj 387 257 metro 1000;
-#X obj 479 131 + 1;
-#X msg 412 42 symbol /src/timetravel_radio/wavs/*;
-#X connect 0 0 1 0;
-#X connect 0 0 15 0;
-#X connect 0 1 43 0;
-#X connect 2 0 0 0;
-#X connect 3 0 2 0;
-#X connect 4 0 36 4;
-#X connect 6 0 34 0;
-#X connect 7 0 30 0;
-#X connect 8 0 36 0;
-#X connect 8 1 11 0;
-#X connect 8 2 13 0;
-#X connect 9 0 8 0;
-#X connect 10 0 44 0;
-#X connect 11 0 12 0;
-#X connect 12 0 7 2;
-#X connect 13 0 14 0;
-#X connect 14 0 7 3;
-#X connect 16 0 7 1;
-#X connect 17 0 11 0;
-#X connect 30 0 18 0;
-#X connect 30 1 19 0;
-#X connect 30 2 20 0;
-#X connect 30 3 21 0;
-#X connect 30 4 22 0;
-#X connect 30 5 23 0;
-#X connect 30 6 24 0;
-#X connect 30 7 25 0;
-#X connect 30 8 26 0;
-#X connect 30 9 27 0;
-#X connect 30 10 28 0;
-#X connect 30 11 29 0;
-#X connect 30 12 31 0;
-#X connect 32 0 0 0;
-#X connect 33 0 0 0;
-#X connect 34 0 0 0;
-#X connect 36 0 5 0;
-#X connect 36 0 7 0;
-#X connect 36 0 35 0;
-#X connect 36 2 37 0;
-#X connect 37 0 42 0;
-#X connect 38 0 37 0;
-#X connect 39 0 37 0;
-#X connect 42 0 9 0;
-#X connect 43 0 4 0;
-#X connect 44 0 3 0;
-#X coords 0 -1 1 1 800 20 1 100 100;
-#X restore 65 94 pd initStations;
-#X obj 92 128 r tuner;
-#X obj 162 128 r tuner;
-#X obj 236 128 r tuner;
-#X obj 739 128 r tuner;
-#X obj 667 128 r tuner;
-#X obj 597 128 r tuner;
-#X obj 526 128 r tuner;
-#X obj 451 128 r tuner;
-#X obj 378 128 r tuner;
-#X obj 311 128 r tuner;
-#X obj 811 128 r tuner;
-#X obj 882 128 r tuner;
-#X text 508 -50 each radio abstraction gets set to read from a different
+#X obj 443 26 inlet;
+#X obj 444 51 == 1024;
+#X obj 316 51 delread~ echo 1800;
+#X obj 405 100 spigot~;
+#X obj 443 75 tgl 15 0 echomode empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 407 142 hilbert~;
+#X connect 0 0 8 0;
+#X connect 2 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 5 0 0 1;
+#X connect 6 0 0 0;
+#X connect 7 0 5 0;
+#X connect 12 0 8 0;
+#X connect 13 0 12 0;
+#X connect 14 0 15 0;
+#X connect 15 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 1 19 0;
+#X connect 18 0 17 1;
+#X connect 19 0 9 0;
+#X restore 710 399 pd echomode;
+#X obj 110 226 hsl 800 15 0 1024 0 0 dial dial empty -2 -8 0 10 -261234
+-1 -1 10441 1;
+#N canvas 114 66 1083 697 radios 0;
+#X text 90 304 each radio abstraction gets set to read from a different
 folder in the root directory \, and independently decides if it should
 be outputting audio based on the curent frequency. They are initialized
 with three values: folder name \, center frequency \, and signal strength.
 The signal strength is used to determine how near the center freq the
 dial must be before the station's volume starts to ramp up.;
-#X obj 64 64 bng 15 250 50 0 empty empty Reload 17 7 0 10 -262144 -1
--1;
-#X obj 64 27 inlet;
-#X obj 90 -138 mixer~ 12 --------------------------------------------------
-;
-#X obj 137 161 radio;
+#X obj 400 10 bng 15 250 50 0 empty reload Reload_Stations 22 7 0 10
+-257985 -1 -1;
 #X obj 505 263 outlet~;
 #X obj 68 161 radio;
-#X obj 210 161 radio;
+#N canvas 143 22 1293 793 initRadios 0;
+#X msg 109 200 length;
+#X obj 110 276 route symbol float;
+#X obj 100 555 expr $f1 - $f2;
+#X obj 32 325 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 96 453 *;
+#X obj 60 324 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 178 515 random;
+#X obj 177 462 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 100 603 5 0 0 0 - - -;
+#X obj 109 245 coll /src/timetravel_radio/stations.txt;
+#C restore;
+#X obj 100 580 int;
+#N canvas 736 48 652 783 initarray 0;
+#X msg 69 145 \; stationlist resize 16;
+#X msg 73 238 \; stationlist xlabel 1 1 3 6 9 12;
+#X msg 74 283 \; stationlist ylabel 100 200 400 600 800 1000;
+#X msg 74 329 \; stationlist yticks 100 100 1000;
+#X msg 72 190 \; stationlist delete;
+#X obj 66 70 t b b b b b b b;
+#X obj 64 12 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 64 39 loadbang;
+#X msg 74 371 \; stationlist xticks 1 1 16;
+#X msg 67 103 \; stationlist bounds 1 1024 16 1;
+#X obj 360 80 t b b b b b b b;
+#X obj 358 22 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 358 49 loadbang;
+#X msg 366 200 \; alradios delete;
+#X msg 363 155 \; allradios resize 1024;
+#X msg 368 339 \; allradios yticks 10 10 100;
+#X msg 368 381 \; allradios xticks 100 100 1000;
+#X msg 368 293 \; allradios ylabel 10 30 50 80;
+#X msg 367 248 \; allradios xlabel 100 200 400 600 800;
+#X msg 361 113 \; allradios bounds 1 100 1023 1;
+#X connect 5 0 9 0;
+#X connect 5 1 0 0;
+#X connect 5 2 4 0;
+#X connect 5 3 1 0;
+#X connect 5 4 2 0;
+#X connect 5 5 3 0;
+#X connect 5 6 8 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
+#X connect 10 0 19 0;
+#X connect 10 1 14 0;
+#X connect 10 2 13 0;
+#X connect 10 3 18 0;
+#X connect 10 4 17 0;
+#X connect 10 5 15 0;
+#X connect 10 6 16 0;
+#X connect 11 0 12 0;
+#X connect 12 0 10 0;
+#X restore 15 745 pd initarray;
+#X obj 134 65 inlet;
+#X text 20 20 Inputs: Bang to read directory listing \, Bang to output
+list. Outputs: Message to each outlet with Folder path \, station frequency
+\, and signal strength.;
+#X obj 94 390 t f f;
+#X obj 201 314 s stationcount;
+#X obj 94 320 s foldername;
+#X obj 101 633 s stationfreq;
+#X obj 24 422 s count;
+#X obj 584 185 r count;
+#X obj 671 184 r foldername;
+#X obj 272 545 random 20;
+#X obj 273 579 + 10;
+#X obj 272 613 s power;
+#X symbolatom 677 252 10 0 0 0 - - -;
+#X obj 215 391 expr 1024 / $f1;
+#X msg 585 219 set \$1;
+#X obj 695 342 pack f s f f;
+#X obj 877 180 r power;
+#X msg 674 217 set \$1;
+#X msg 770 223 set \$1;
+#X msg 879 220 set \$1;
+#X obj 773 105 t b b b b;
+#X msg 187 202 next;
+#X obj 774 71 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 590 268 5 0 0 0 - - -;
+#X floatatom 878 251 5 0 0 0 - - -;
+#X floatatom 770 255 5 0 0 0 - - -;
+#X obj 766 180 r stationfreq;
+#X obj 281 124 uzi;
+#X obj 267 153 t b b;
+#X obj 277 61 r stationcount;
+#X obj 278 95 t b f;
+#X obj 94 365 counter 1 100;
+#X floatatom 353 95 5 0 0 0 - - -;
+#X obj 698 375 outlet;
+#X obj 591 374 print stations;
+#X msg 13 131 \; allradios const 0;
+#X obj 132 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 172 162 goto 1;
+#X obj 19 469 print count;
+#X connect 0 0 9 0;
+#X connect 0 0 5 0;
+#X connect 1 0 3 0;
+#X connect 1 0 16 0;
+#X connect 1 1 15 0;
+#X connect 1 1 25 0;
+#X connect 2 0 10 0;
+#X connect 3 0 43 0;
+#X connect 4 0 7 0;
+#X connect 4 0 2 0;
+#X connect 5 0 43 2;
+#X connect 6 0 2 1;
+#X connect 7 0 6 0;
+#X connect 7 0 21 0;
+#X connect 8 0 17 0;
+#X connect 9 0 1 0;
+#X connect 10 0 8 0;
+#X connect 12 0 48 0;
+#X connect 14 0 4 0;
+#X connect 19 0 26 0;
+#X connect 20 0 29 0;
+#X connect 21 0 22 0;
+#X connect 22 0 23 0;
+#X connect 24 0 27 1;
+#X connect 25 0 4 1;
+#X connect 25 0 6 1;
+#X connect 26 0 35 0;
+#X connect 27 0 45 0;
+#X connect 27 0 46 0;
+#X connect 28 0 31 0;
+#X connect 29 0 24 0;
+#X connect 30 0 37 0;
+#X connect 31 0 36 0;
+#X connect 32 0 35 0;
+#X connect 32 1 24 0;
+#X connect 32 2 37 0;
+#X connect 32 3 36 0;
+#X connect 33 0 9 0;
+#X connect 34 0 32 0;
+#X connect 35 0 27 0;
+#X connect 36 0 27 3;
+#X connect 37 0 27 2;
+#X connect 38 0 30 0;
+#X connect 39 0 40 0;
+#X connect 40 0 34 0;
+#X connect 40 1 33 0;
+#X connect 41 0 42 0;
+#X connect 41 0 44 0;
+#X connect 42 0 39 0;
+#X connect 42 1 39 1;
+#X connect 43 0 14 0;
+#X connect 43 0 18 0;
+#X connect 43 0 50 0;
+#X connect 48 0 47 0;
+#X connect 48 0 0 0;
+#X connect 48 0 49 0;
+#X connect 49 0 9 0;
+#X restore 401 42 pd initRadios;
+#X obj 400 74 route 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+20;
+#X obj 400 -20 loadbang;
+#X obj 622 318 mixer~;
 #X obj 283 161 radio;
+#X obj 137 161 radio;
+#X obj 210 162 radio;
 #X obj 352 161 radio;
 #X obj 425 161 radio;
 #X obj 500 161 radio;
@@ -178,86 +227,165 @@ dial must be before the station's volume starts to ramp up.;
 #X obj 715 161 radio;
 #X obj 784 161 radio;
 #X obj 857 161 radio;
-#X connect 0 0 19 0;
-#X connect 0 1 17 0;
-#X connect 0 2 20 0;
-#X connect 0 3 21 0;
-#X connect 0 4 22 0;
-#X connect 0 5 23 0;
-#X connect 0 6 24 0;
-#X connect 0 7 25 0;
-#X connect 0 8 26 0;
-#X connect 0 9 27 0;
-#X connect 0 10 28 0;
-#X connect 0 11 29 0;
-#X connect 1 0 19 1;
-#X connect 2 0 17 1;
-#X connect 3 0 20 1;
-#X connect 4 0 27 1;
-#X connect 5 0 26 1;
-#X connect 6 0 25 1;
-#X connect 7 0 24 1;
-#X connect 8 0 23 1;
-#X connect 9 0 22 1;
-#X connect 10 0 21 1;
-#X connect 11 0 28 1;
-#X connect 12 0 29 1;
-#X connect 14 0 0 0;
-#X connect 15 0 14 0;
-#X connect 17 0 18 0;
-#X connect 19 0 18 0;
-#X connect 20 0 18 0;
-#X connect 21 0 18 0;
-#X restore 249 353 pd radios;
-#N canvas 764 100 450 300 sensors 1;
+#X obj 915 161 radio;
+#X connect 1 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 0;
+#X connect 5 1 9 0;
+#X connect 5 2 10 0;
+#X connect 5 3 8 0;
+#X connect 5 4 11 0;
+#X connect 5 5 12 0;
+#X connect 5 6 13 0;
+#X connect 5 7 14 0;
+#X connect 5 8 15 0;
+#X connect 5 9 16 0;
+#X connect 5 10 17 0;
+#X connect 5 11 18 0;
+#X connect 5 12 19 0;
+#X connect 6 0 1 0;
+#X connect 8 0 2 0;
+#X connect 9 0 2 0;
+#X connect 10 0 2 0;
+#X connect 11 0 2 0;
+#X connect 12 0 2 0;
+#X connect 13 0 2 0;
+#X connect 14 0 2 0;
+#X connect 15 0 2 0;
+#X connect 16 0 2 0;
+#X connect 17 0 2 0;
+#X connect 18 0 2 0;
+#X connect 19 0 2 0;
+#X restore 613 399 pd radios;
+#N canvas 394 484 676 513 sensors 1;
 #X obj 55 245 outlet;
 #X obj 178 249 outlet;
 #X obj 298 247 outlet;
 #X text 38 272 dial reading;
 #X text 298 272 to lights;
-#X obj 63 44 hsl 128 15 0 1023 0 0 empty empty Tuner -2 -8 0 10 -260097
--1 -1 0 1;
-#N canvas 190 140 953 611 debounce 0;
-#X obj 58 39 inlet;
-#X obj 67 238 outlet;
-#X text 268 28 this smooths out the dial motion.;
-#X obj 67 122 int;
-#X obj 441 187 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
-#X obj 440 333 f;
-#X floatatom 384 371 5 0 0 0 - - -;
-#X connect 0 0 3 0;
-#X connect 3 0 1 0;
-#X connect 5 0 6 0;
-#X restore 59 142 pd debounce;
-#X obj 358 40 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 77 163 hsl 128 15 0 1024 0 0 dial dial Tuner -2 -8 0 10 -260097
+-1 -1 1660 1;
+#X obj 579 35 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 355 15 power plug;
+#X obj 576 10 power plug;
 #X text 180 274 to volume?;
-#X obj 268 45 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 255 20 percussive;
-#X floatatom 86 188 5 0 1023 2 freq - -;
-#X connect 5 0 6 0;
-#X connect 6 0 0 0;
-#X connect 6 0 12 0;
-#X restore 15 59 pd sensors;
-#X obj 15 144 s tuner;
-#X obj 15 114 int;
-#N canvas 883 254 450 300 init 0;
-#X obj 171 116 s delay;
-#X obj 254 117 s micVolume;
-#X obj 64 115 s masterVolume;
-#X restore 9 13 pd init;
-#X obj 391 353 r tuner;
-#X obj 349 446 dac~ 1;
-#X obj 64 346 table tuner;
-#X obj 57 313 tabwrite table;
-#X obj 138 287 r tuner;
-#X connect 0 0 8 0;
-#X connect 1 0 5 0;
-#X connect 2 0 8 0;
-#X connect 3 0 1 0;
-#X connect 5 0 4 0;
+#X obj 489 40 bng 15 250 50 0 percusive percusive empty 17 7 0 10 -262144
+-1 -1;
+#X text 476 15 percussive;
+#X floatatom 8 240 5 0 1023 2 freq - -;
+#X msg 419 304 dec;
+#X msg 467 318 inc;
+#X floatatom 441 469 5 0 0 0 - - -;
+#X obj 437 374 counter 1 10;
+#X obj 226 107 f 0;
+#X obj 229 139 expr $f1 + $f2;
+#X msg 260 105 2;
+#X msg 300 106 -2;
+#X obj 215 46 key;
+#X text 215 21 key 'a' or 's';
+#X obj 216 70 select 115 97;
+#X obj 57 204 int;
+#X msg 487 67 \; reload 1;
+#X connect 5 0 23 0;
+#X connect 9 0 24 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
+#X connect 16 0 5 0;
+#X connect 17 0 16 1;
+#X connect 18 0 17 1;
+#X connect 19 0 17 1;
+#X connect 20 0 22 0;
+#X connect 22 0 18 0;
+#X connect 22 0 16 0;
+#X connect 22 1 19 0;
+#X connect 22 1 16 0;
+#X connect 23 0 0 0;
+#X connect 23 0 11 0;
+#X restore 13 49 pd sensors;
+#N canvas 883 254 376 505 init 0;
+#X msg 166 94 \; dsp 1;
+#X obj 166 56 loadbang;
+#X msg 137 167 \; maindial 500;
+#X msg 123 200 \; percusive 1;
+#X msg 152 130 \; plugged 1;
+#X connect 1 0 0 0;
+#X connect 1 0 2 0;
+#X connect 1 0 3 0;
+#X connect 1 0 4 0;
+#X restore 14 15 pd init;
+#X obj 713 476 dac~ 1;
+#X obj 13 76 s dial;
+#X obj 709 323 r dial;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array allradios 1024 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 4 9 13 18 22 27 31 36 40 45 50 54 59 63 68
+72 77 81 86 90 95 100 95 90 86 81 77 72 68 63 59 54 50 45 40 36 31
+27 22 18 13 9 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 10 20 30 40 50 60 70 80 90 100 90 80 70 60 50 40 30 20
+10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 4 9 13 18 22 27 31 36 40 45 50 54 59 63 68 72 77 81
+86 90 95 100 95 90 86 81 77 72 68 63 59 54 50 45 40 36 31 27 22 18
+13 9 4 0 6 12 18 25 31 37 43 50 56 62 68 75 81 87 93 100 93 87 81 75
+68 62 56 50 43 37 31 25 18 12 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 6 13
+20 26 33 40 46 53 60 66 73 80 86 93 100 93 86 80 73 66 60 53 46 40
+33 26 20 13 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 9 13 18 22
+27 31 36 40 45 50 54 59 63 68 72 77 81 86 90 95 100 95 90 86 81 77
+72 68 63 59 54 50 45 40 36 31 27 22 18 13 9 4 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90
+95 100 95 90 85 80 75 70 65 60 55 50 45 40 35 30 25 20 15 10 5 0 0
+0 0 0 0 0 0 8 16 25 33 41 50 58 66 75 83 91 100 91 83 75 66 58 50 41
+33 25 16 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 6 12 18 25 31 37 43 50 56 62 68 75 81 87 93 100 93 87 81 75 68
+62 56 50 43 37 31 25 18 12 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 5 11 16 22 27 33 38 44 50 55 61 66 72 77 83 88
+94 100 94 88 83 77 72 66 61 55 50 44 38 33 27 22 16 11 5 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 11 16 22
+27 33 38 44 50 55 61 66 72 77 83 88 94 100 94 88 83 77 72 66 61 55
+50 44 38 33 27 22 16 11 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92
+96 100 96 92 88 84 80 76 72 68 64 60 56 52 48 44 40 36 32 28 24 20
+16 12 8 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+3 7 11 14 18 22 25 29 33 37 40 44 48 51 55 59 62 66;
+#A 1000 70 74 77 81 85 88 92 96 100 96 92 88 85 81 77 74 70 66 62 59
+55 51 48 44;
+#X coords 1 100 1023 1 800 200 1 0 0;
+#X restore 108 22 graph;
+#N canvas 299 514 450 300 glitches 0;
+#X obj 108 140 outlet~;
+#X restore 522 402 pd glitches;
+#N canvas 713 552 450 300 dialnoise 0;
+#X obj 96 114 inlet;
+#X obj 101 199 outlet~;
+#X restore 811 399 pd dialnoise;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X coords 0 -1 1 1 400 200 1 0 0;
+#X restore 504 308 graph;
+#X text 533 322 Ye Olde DAC;
+#X obj 126 399 tgl 25 1 plugged plugged Plugged_In 0 -10 0 10 -204786
+-1 -258113 1 1;
+#X obj 224 399 bng 25 250 50 0 percusive percusive Percusive 0 -10
+0 10 -262130 -1 -258113;
+#X obj 126 454 tgl 25 1 empty echomode Echo_Mode 0 -10 0 10 -204786
+-1 -258113 0 1;
+#X floatatom 171 249 5 0 0 0 Radio_Dial dial -;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X coords 0 1 100 -1 200 140 1;
+#X restore 102 366 graph;
+#X connect 0 0 5 0;
+#X connect 2 0 5 0;
+#X connect 3 0 6 0;
 #X connect 7 0 0 0;
-#X connect 11 0 10 1;
+#X connect 7 0 10 0;
+#X connect 9 0 5 0;
+#X connect 10 0 5 0;

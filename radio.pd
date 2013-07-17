@@ -1,5 +1,5 @@
-#N canvas 457 82 853 731 10;
-#N canvas 240 90 1066 709 songlist 0;
+#N canvas 61 36 1154 765 10;
+#N canvas 272 88 1066 709 songlist 0;
 #X obj -32 29 inlet;
 #X obj 231 41 inlet;
 #X text -106 4 folder name;
@@ -26,18 +26,16 @@
 #X obj -122 65 t b b b;
 #X msg -160 188 end \, where;
 #X msg -81 190 clear;
-#X msg -145 -24 symbol /Users/dfine/Documents/projects/radio/wavs/BJM/*.wav
-;
 #X obj -140 27 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 34 177 goto 2 \, this;
-#X obj 35 276 print length;
 #X msg -178 226 end;
 #X msg -178 303 rewind;
 #X msg -168 254 where;
 #X obj -5 180 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj -31 111 folder_list /*;
+#X msg -145 -24 symbol /src/timetravel_radio/wavs/BJM/*.ogg;
 #X connect 0 0 14 0;
 #X connect 0 0 21 0;
 #X connect 1 0 5 0;
@@ -51,156 +49,176 @@
 #X connect 11 1 12 0;
 #X connect 12 0 11 0;
 #X connect 13 0 17 0;
-#X connect 14 0 32 1;
+#X connect 14 0 30 1;
 #X connect 16 0 17 0;
 #X connect 17 0 20 0;
 #X connect 17 0 15 0;
 #X connect 17 1 18 0;
-#X connect 17 1 27 0;
 #X connect 18 1 19 0;
 #X connect 21 0 22 0;
-#X connect 21 1 32 0;
+#X connect 21 1 30 0;
 #X connect 21 2 23 0;
 #X connect 22 0 17 0;
 #X connect 23 0 17 0;
-#X connect 24 0 14 0;
-#X connect 25 0 21 0;
+#X connect 24 0 21 0;
+#X connect 25 0 17 0;
 #X connect 26 0 17 0;
+#X connect 27 0 17 0;
 #X connect 28 0 17 0;
 #X connect 29 0 17 0;
-#X connect 30 0 17 0;
-#X connect 31 0 17 0;
-#X connect 32 0 16 0;
-#X restore -5 258 pd songlist;
-#X obj -10 37 inlet;
-#X obj 58 226 r loadnew;
-#X symbolatom 83 345 77 0 0 0 - - -;
-#X obj 71 510 readsf~;
-#X obj 190 56 inlet;
-#X obj 113 549 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 118 576 s loadnew;
-#X obj 1 484 print;
-#X msg -39 506 start;
-#X msg 121 472 print;
-#X obj -25 443 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -79 469 delay 2000;
-#X msg 17 427 open \$1;
-#X text 297 40 Tuner Reading;
-#X obj -10 67 unpack s f f;
-#X text -42 16 Initialization: foldername \, center freq \, sig strength
-;
-#X floatatom 53 108 5 0 0 3 Freq - -;
-#X floatatom 125 83 5 0 0 3 power - -;
-#X obj 229 546 outlet~;
-#X obj -11 139 symbol;
-#X obj 33 227 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 18 318 symbol;
-#X floatatom 92 186 5 0 0 0 - - -;
-#X obj 216 151 abs;
-#X floatatom 319 77 5 0 0 0 - - -;
-#X obj 247 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 220 123 expr $f1-$f2;
-#X obj 325 278 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X obj 101 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 320 207 <= 10;
-#X text 402 20 Compare current tuner reading to station's reading \,
+#X connect 30 0 16 0;
+#X connect 31 0 14 0;
+#X restore 150 275 pd songlist;
+#X obj 154 58 inlet;
+#X obj 213 243 r loadnew;
+#X symbolatom 151 331 60 0 0 0 Now_Playing - -;
+#X obj 154 88 unpack s f f;
+#X obj 154 520 outlet~;
+#X obj 151 219 symbol;
+#X obj 151 301 symbol;
+#X text 325 15 Compare current tuner reading to station's reading \,
 turn on radio if it's the frequency + or - the station's power.;
-#X msg -12 108 \$1/*.ogg;
-#X obj 221 438 oggread~;
-#X msg 104 383 open \$1;
-#X msg 351 385 start;
-#X msg 433 390 seek 60;
-#X msg 280 376 stop;
-#X msg 210 371 resume;
-#X obj 182 393 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 150 188 \$1/*.ogg;
+#X obj 153 402 oggread~;
+#X msg 152 364 open \$1;
+#X symbolatom 601 96 44 0 0 2 Station_Folder - -;
+#X floatatom 188 125 5 0 0 2 Freq - -;
+#X floatatom 242 125 5 0 0 0 Power - -;
+#X text -42 16 Inlets: foldername \, center freq \, sig strength;
+#X text -32 51 Outlet: Audio with AM effects;
+#X msg 95 386 start;
+#X obj 153 464 effects;
+#N canvas 606 70 952 595 tuner 0;
+#X floatatom 152 317 5 0 0 0 - - -;
+#X obj 53 62 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 56 134 counter 0 1024;
+#X obj 169 9 inlet;
+#X obj 234 6 inlet;
+#X obj 471 364 loadbang;
+#X text 330 45 Inlets: Station Freq \, Power \, Dial Position;
+#X text 335 64 Outlet: How in tune at current dial position.;
+#X floatatom 171 99 5 0 0 0 - - -;
+#X floatatom 239 96 5 0 0 0 - - -;
+#X floatatom 52 355 5 0 0 0 - - -;
+#X obj 54 88 metro 1;
+#X obj 52 435 tabwrite \$0-thisstation;
+#X obj 469 415 f \$0;
+#X obj 470 390 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 121 137 s power;
-#X obj 311 151 r power;
-#X obj 270 60 r freq;
-#X obj 48 149 s freq;
-#X obj 441 484 metro 1000;
-#X obj 443 448 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X obj 570 510 r length;
-#X floatatom 441 568 5 0 0 0 - - -;
-#X obj 255 510 s length;
-#X obj 540 607 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 540 580 pipe 4000;
-#X floatatom 37 37 5 0 0 0 - - -;
-#X floatatom 37 37 5 0 0 0 - - -;
-#X obj 441 537 counter 1 6000;
-#X msg 521 486 carrybang;
-#X obj 523 458 loadbang;
-#X obj 523 427 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 541 633 s loadnew;
-#X obj 261 633 hsl 128 15 0 19 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 8689 1;
-#X floatatom 272 697 5 0 0 0 - - -;
-#X msg 272 589 range 0 \$1;
-#X obj 404 605 int;
-#X msg 273 482 19;
-#X obj 307 549 r length;
-#X connect 0 0 22 0;
-#X connect 1 0 15 0;
+#X msg 313 459 \; \$1-thisstation resize 1024;
+#X msg 504 456 \; \$1-thisstation bounds 0 100 1024 0;
+#X obj 58 202 expr int(100 - abs($f1 - $f2) * 100 / $f3);
+#X obj 57 268 max 0;
+#X obj 179 374 spigot;
+#X obj 202 399 tabwrite allradios;
+#N canvas 212 83 561 563 initstation 0;
+#X obj 74 5 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 74 32 loadbang;
+#X obj 76 100 f \$0;
+#X obj 76 160 t f f f f f f f;
+#X msg 82 280 \; \$1-thisstation delete;
+#X msg 79 235 \; \$1-thisstation resize 1023;
+#X msg 84 419 \; \$1-thisstation yticks 10 10 100;
+#X msg 84 461 \; \$1-thisstation xticks 100 100 1000;
+#X msg 77 193 \; \$1-thisstation bounds 1 100 1000 1;
+#X msg 83 328 \; \$1-thisstation xlabel 100 200 400 600 800;
+#X msg 84 373 \; \$1-thisstation ylabel 10 25 50 75;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 8 0;
+#X connect 3 1 5 0;
+#X connect 3 2 4 0;
+#X connect 3 3 9 0;
+#X connect 3 4 10 0;
+#X connect 3 5 6 0;
+#X connect 3 6 7 0;
+#X restore 52 475 pd initstation;
+#X connect 0 0 12 1;
+#X connect 0 0 20 1;
+#X connect 1 0 11 0;
+#X connect 2 0 0 0;
+#X connect 2 0 17 0;
+#X connect 2 2 1 0;
+#X connect 3 0 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 9 0;
+#X connect 5 0 14 0;
+#X connect 8 0 17 1;
+#X connect 9 0 17 2;
+#X connect 10 0 12 0;
+#X connect 10 0 19 1;
+#X connect 10 0 19 0;
+#X connect 11 0 2 0;
+#X connect 13 0 15 0;
+#X connect 13 0 16 0;
+#X connect 14 0 13 0;
+#X connect 17 0 18 0;
+#X connect 18 0 10 0;
+#X connect 19 0 20 0;
+#X restore 190 158 pd tuner;
+#N canvas 141 58 733 468 (subpatch) 0;
+#X array \$0-thisstation 1024 float 1;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 3 7 11 14 18 22 25 29 33 37 40 44 48 51 55
+59 62 66 70 74 77 81 85 88 92 96 100 96 92 88 85 81 77 74 70 66 62
+59 55 51 48 44 40 37 33 29 25 22 18 14 11 7 3 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0;
+#A 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X coords 0 100 1024 0 200 140 1 2 0;
+#X restore 604 160 graph;
+#X floatatom 600 385 5 0 0 0 - - -;
+#X obj 604 301 hsl 200 15 0 1024 0 0 dial dial empty 0 -8 0 10 -260097
+-1 -1 3778 1;
+#X obj 600 359 tabread \$0-thisstation;
+#X obj 601 328 int;
+#X connect 0 0 7 0;
+#X connect 1 0 4 0;
 #X connect 2 0 0 1;
-#X connect 3 0 34 0;
-#X connect 4 1 6 0;
-#X connect 5 0 27 0;
-#X connect 6 0 7 0;
-#X connect 9 0 4 0;
-#X connect 10 0 4 0;
-#X connect 11 0 12 0;
-#X connect 12 0 9 0;
-#X connect 13 0 4 0;
-#X connect 13 0 8 0;
-#X connect 13 0 11 0;
-#X connect 15 0 32 0;
-#X connect 15 1 17 0;
-#X connect 15 2 18 0;
-#X connect 17 0 43 0;
-#X connect 18 0 40 0;
-#X connect 20 0 0 0;
-#X connect 21 0 0 1;
-#X connect 22 0 3 0;
+#X connect 3 0 11 0;
+#X connect 4 0 9 0;
+#X connect 4 0 12 0;
+#X connect 4 1 13 0;
+#X connect 4 2 14 0;
+#X connect 6 0 0 0;
+#X connect 7 0 3 0;
+#X connect 9 0 6 0;
+#X connect 10 0 18 0;
+#X connect 11 0 10 0;
+#X connect 11 0 17 0;
+#X connect 13 0 19 0;
+#X connect 14 0 19 1;
+#X connect 17 0 10 0;
+#X connect 18 0 5 0;
+#X connect 21 0 18 1;
+#X connect 22 0 24 0;
+#X connect 23 0 21 0;
 #X connect 24 0 23 0;
-#X connect 24 0 30 0;
-#X connect 25 0 27 0;
-#X connect 26 0 27 0;
-#X connect 27 0 24 0;
-#X connect 29 0 17 0;
-#X connect 29 0 18 0;
-#X connect 30 0 28 0;
-#X connect 32 0 20 0;
-#X connect 33 0 19 0;
-#X connect 34 0 33 0;
-#X connect 35 0 33 0;
-#X connect 36 0 33 0;
-#X connect 37 0 33 0;
-#X connect 38 0 33 0;
-#X connect 39 0 33 0;
-#X connect 41 0 30 1;
-#X connect 42 0 27 1;
-#X connect 44 0 53 0;
-#X connect 45 0 44 0;
-#X connect 46 0 53 4;
-#X connect 47 0 61 0;
-#X connect 49 0 57 0;
-#X connect 50 0 49 0;
-#X connect 53 0 47 0;
-#X connect 53 2 50 0;
-#X connect 54 0 53 0;
-#X connect 55 0 54 0;
-#X connect 56 0 55 0;
-#X connect 58 0 59 0;
-#X connect 60 0 58 0;
-#X connect 61 0 58 0;
-#X connect 62 0 48 0;
-#X connect 63 0 60 0;
