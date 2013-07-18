@@ -1,4 +1,4 @@
-#N canvas 61 36 1154 765 10;
+#N canvas 296 51 1154 765 10;
 #N canvas 272 88 1066 709 songlist 0;
 #X obj -32 29 inlet;
 #X obj 231 41 inlet;
@@ -11,7 +11,7 @@
 #X floatatom 383 110 5 0 0 0 - - -;
 #X text 439 112 number of tracks;
 #X obj 350 73 + 1;
-#X obj 277 150 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 277 150 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 231 109 urn;
 #X msg 291 115 clear \, bang;
@@ -70,7 +70,7 @@
 #X connect 31 0 14 0;
 #X restore 150 275 pd songlist;
 #X obj 154 58 inlet;
-#X obj 213 243 r loadnew;
+#X obj 213 223 r loadnew;
 #X symbolatom 151 331 60 0 0 0 Now_Playing - -;
 #X obj 154 88 unpack s f f;
 #X obj 154 520 outlet~;
@@ -86,7 +86,6 @@ turn on radio if it's the frequency + or - the station's power.;
 #X floatatom 242 125 5 0 0 0 Power - -;
 #X text -42 16 Inlets: foldername \, center freq \, sig strength;
 #X text -32 51 Outlet: Audio with AM effects;
-#X msg 95 386 start;
 #X obj 153 464 effects;
 #N canvas 606 70 952 595 tuner 0;
 #X floatatom 152 317 5 0 0 0 - - -;
@@ -162,9 +161,11 @@ turn on radio if it's the frequency + or - the station's power.;
 #N canvas 141 58 733 468 (subpatch) 0;
 #X array \$0-thisstation 1024 float 1;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 3 7 11 14 18 22 25 29 33 37 40 44 48 51 55
-59 62 66 70 74 77 81 85 88 92 96 100 96 92 88 85 81 77 74 70 66 62
-59 55 51 48 44 40 37 33 29 25 22 18 14 11 7 3 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 7 15 23 30 38 46 53 61 69 76 84 92 100 92 84 76 69 61 53 46 38 30
+23 15 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -188,37 +189,59 @@ turn on radio if it's the frequency + or - the station's power.;
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0;
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #A 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 100 1024 0 200 140 1 2 0;
 #X restore 604 160 graph;
-#X floatatom 600 385 5 0 0 0 - - -;
-#X obj 604 301 hsl 200 15 0 1024 0 0 dial dial empty 0 -8 0 10 -260097
--1 -1 3778 1;
-#X obj 600 359 tabread \$0-thisstation;
-#X obj 601 328 int;
+#X floatatom 601 396 5 0 0 0 - - -;
+#X obj 604 301 hsl 200 15 0 1024 0 0 empty dial empty 0 -8 0 10 -260097
+-1 -1 946 1;
+#X obj 601 370 tabread \$0-thisstation;
+#X obj 601 322 int;
+#X obj 562 271 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 42 306 edge;
+#X msg 91 363 stop;
+#X obj 199 430 s loadnew;
+#X obj 165 245 t b s;
+#X obj 35 384 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 35 409 start;
+#X obj 118 228 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 551 333 5 0 0 0 - - -;
+#X obj 41 273 r \$0-intune;
+#X obj 602 422 s \$0-intune;
+#X obj 7 337 s loadnew;
 #X connect 0 0 7 0;
 #X connect 1 0 4 0;
 #X connect 2 0 0 1;
+#X connect 2 0 29 0;
 #X connect 3 0 11 0;
 #X connect 4 0 9 0;
 #X connect 4 0 12 0;
 #X connect 4 1 13 0;
 #X connect 4 2 14 0;
-#X connect 6 0 0 0;
+#X connect 6 0 28 0;
 #X connect 7 0 3 0;
 #X connect 9 0 6 0;
-#X connect 10 0 18 0;
+#X connect 10 0 17 0;
+#X connect 10 3 27 0;
 #X connect 11 0 10 0;
-#X connect 11 0 17 0;
-#X connect 13 0 19 0;
-#X connect 14 0 19 1;
-#X connect 17 0 10 0;
-#X connect 18 0 5 0;
-#X connect 21 0 18 1;
-#X connect 22 0 24 0;
-#X connect 23 0 21 0;
-#X connect 24 0 23 0;
+#X connect 13 0 18 0;
+#X connect 14 0 18 1;
+#X connect 17 0 5 0;
+#X connect 20 0 34 0;
+#X connect 21 0 23 0;
+#X connect 21 0 32 0;
+#X connect 22 0 20 0;
+#X connect 23 0 22 0;
+#X connect 24 0 21 0;
+#X connect 25 0 35 0;
+#X connect 25 1 26 0;
+#X connect 26 0 10 0;
+#X connect 28 0 0 1;
+#X connect 28 1 0 0;
+#X connect 29 0 30 0;
+#X connect 30 0 10 0;
+#X connect 33 0 25 0;

@@ -1,4 +1,4 @@
-#N canvas 259 66 1377 856 10;
+#N canvas 0 99 1377 856 10;
 #X obj 818 255 oggread~;
 #X obj 821 97 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -6,8 +6,8 @@
 #X msg 819 158 open \$1;
 #X msg 896 194 start;
 #X msg 836 199 stop;
-#X obj 676 39 vsl 15 128 0 100 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 12000 1;
+#X obj 675 36 vsl 15 128 0 100 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 12700 1;
 #X obj 224 332 expr~ $v1*min(1 \, 2*(1-$v3))+$v2*min(1 \, 2*$v3);
 #X floatatom 544 246 5 0 0 0 - - -;
 #X obj 543 269 sig~;
@@ -21,7 +21,7 @@
 #X obj 262 455 *~;
 #X floatatom 393 468 5 0 0 0 - - -;
 #X obj 392 435 expr (100 - $f1) * 0.01;
-#X obj 677 -21 inlet;
+#X obj 674 -21 inlet;
 #X obj 543 154 metro 160;
 #X text 224 -61 Add radio noise according to how "in tune" a station
 is.;
@@ -42,11 +42,11 @@ is.;
 #X obj 225 121 inlet~;
 #X text 225 -34 Inlets: Plain audio \, Tuning factor 1-100;
 #X text 226 -15 Outlet: Audio that sounds like AM Radio;
-#X obj 673 217 s strength;
-#X obj 392 411 r strength;
 #X obj 287 214 r strength;
-#X obj 678 4 expr 100 - $f1;
+#X obj 675 4 expr 100 - $f1;
 #X msg 552 1 100;
+#X obj 673 217 s \$0-strength;
+#X obj 391 411 r \$0-strength;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 0 0;
@@ -56,7 +56,7 @@ is.;
 #X connect 6 0 12 1;
 #X connect 6 0 14 0;
 #X connect 6 0 15 0;
-#X connect 6 0 39 0;
+#X connect 6 0 42 0;
 #X connect 7 0 30 0;
 #X connect 7 0 13 0;
 #X connect 8 0 9 0;
@@ -69,7 +69,7 @@ is.;
 #X connect 16 0 35 0;
 #X connect 18 0 16 1;
 #X connect 18 0 17 0;
-#X connect 19 0 42 0;
+#X connect 19 0 40 0;
 #X connect 20 0 12 0;
 #X connect 23 0 28 0;
 #X connect 24 0 27 0;
@@ -80,10 +80,10 @@ is.;
 #X connect 29 0 28 1;
 #X connect 30 0 13 0;
 #X connect 32 0 10 0;
-#X connect 33 0 43 0;
+#X connect 33 0 41 0;
 #X connect 36 0 7 0;
 #X connect 36 0 25 0;
-#X connect 40 0 18 0;
-#X connect 41 0 29 0;
-#X connect 42 0 6 0;
-#X connect 43 0 6 0;
+#X connect 39 0 29 0;
+#X connect 40 0 6 0;
+#X connect 41 0 6 0;
+#X connect 43 0 18 0;
