@@ -1,4 +1,4 @@
-#N canvas 296 51 1154 765 10;
+#N canvas 323 51 1154 765 10;
 #N canvas 272 88 1066 709 songlist 0;
 #X obj -32 29 inlet;
 #X obj 231 41 inlet;
@@ -73,7 +73,7 @@
 #X obj 213 223 r loadnew;
 #X symbolatom 151 331 60 0 0 0 Now_Playing - -;
 #X obj 154 88 unpack s f f;
-#X obj 154 520 outlet~;
+#X obj 154 557 outlet~;
 #X obj 151 219 symbol;
 #X obj 151 301 symbol;
 #X text 325 15 Compare current tuner reading to station's reading \,
@@ -86,7 +86,7 @@ turn on radio if it's the frequency + or - the station's power.;
 #X floatatom 242 125 5 0 0 0 Power - -;
 #X text -42 16 Inlets: foldername \, center freq \, sig strength;
 #X text -32 51 Outlet: Audio with AM effects;
-#X obj 153 464 effects;
+#X obj 153 501 effects;
 #N canvas 606 70 952 595 tuner 0;
 #X floatatom 152 317 5 0 0 0 - - -;
 #X obj 53 62 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
@@ -161,11 +161,11 @@ turn on radio if it's the frequency + or - the station's power.;
 #N canvas 141 58 733 468 (subpatch) 0;
 #X array \$0-thisstation 1024 float 1;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 7 15 23 30 38 46 53 61 69 76 84 92 100 92 84 76 69 61 53 46 38
+30 23 15 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 7 15 23 30 38 46 53 61 69 76 84 92 100 92 84 76 69 61 53 46 38 30
-23 15 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -195,7 +195,7 @@ turn on radio if it's the frequency + or - the station's power.;
 #X restore 604 160 graph;
 #X floatatom 601 396 5 0 0 0 - - -;
 #X obj 604 301 hsl 200 15 0 1024 0 0 empty dial empty 0 -8 0 10 -260097
--1 -1 946 1;
+-1 -1 3092 1;
 #X obj 601 370 tabread \$0-thisstation;
 #X obj 601 322 int;
 #X obj 562 271 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -213,6 +213,7 @@ turn on radio if it's the frequency + or - the station's power.;
 #X obj 41 273 r \$0-intune;
 #X obj 602 422 s \$0-intune;
 #X obj 7 337 s loadnew;
+#X obj 193 465 r \$0-intune;
 #X connect 0 0 7 0;
 #X connect 1 0 4 0;
 #X connect 2 0 0 1;
@@ -245,3 +246,4 @@ turn on radio if it's the frequency + or - the station's power.;
 #X connect 29 0 30 0;
 #X connect 30 0 10 0;
 #X connect 33 0 25 0;
+#X connect 36 0 17 1;
