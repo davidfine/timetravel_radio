@@ -7,3 +7,6 @@
 *.gz
 ./pdogg
 ./Externals
+./wavs
+./stations
+

@@ -2,12 +2,11 @@
 2, 1920s-dixie;
 3, 1930s-western;
 4, 1930s-swing;
-5, 1940s-bigband;
+5, 1940s-bebop;
 6, 1950s-R&B;
 7, 1960s-Pop;
 8, 1970s-Disco;
-9, 1970s-Funk;
-10, 1970s-metal;
-11, 1980s-Hiphop;
-12, 1980s-newwave;
-13, 1990s-top40;
+9, 1970s-metal;
+10, 1980s-newwave;
+11, 1990s-top40;
+12, 2000s-rave;
