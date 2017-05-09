@@ -1,12 +1,12 @@
-#N canvas -40 223 990 576 10;
-#N canvas 691 228 593 372 echomode 0;
+#N canvas -493 -989 1288 783 10;
+#N canvas 691 228 593 372 echomode 1;
 #X obj 126 138 *~;
 #X text 265 1 Enable to Play back microphone audio with delay.;
 #X obj 71 62 adc~ 1;
 #X obj 157 6 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 157 37 loadbang;
-#X obj 154 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0.75
+#X obj 154 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 0.75;
 #X obj 72 94 lop~ 600;
 #X obj 156 72 metroplus 10000 2000;
@@ -24,6 +24,10 @@ eliminate feedback loops.;
 0 1;
 #X obj 407 142 hilbert~;
 #X obj 316 51 delread~ echo 1000;
+#X obj 37 37;
+#X obj 37 37;
+#X obj 37 37;
+#X obj 37 37;
 #X connect 0 0 8 0;
 #X connect 2 0 6 0;
 #X connect 3 0 4 0;
@@ -40,8 +44,8 @@ eliminate feedback loops.;
 #X connect 18 0 9 0;
 #X connect 19 0 16 0;
 #X restore 710 399 pd echomode;
-#X obj 110 226 hsl 800 15 0 1024 0 0 dial dial empty -2 -8 0 10 -261234
--1 -1 17322 1;
+#X obj 102 228 hsl 800 15 0 1024 0 0 dial dial empty -2 -8 0 10 -261234
+-1 -1 55014 1;
 #N canvas 67 338 1083 697 radios 1;
 #X text 90 304 each radio abstraction gets set to read from a different
 folder in the root directory \, and independently decides if it should
@@ -259,7 +263,7 @@ all at once.;
 #X text 38 272 dial reading;
 #X text 298 272 to lights;
 #X obj 144 187 hsl 400 15 0 1024 0 0 dial empty Tuner -2 -8 0 10 -260097
--1 -1 8650 1;
+-1 -1 0 1;
 #X obj 579 35 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 576 10 power plug;
@@ -302,7 +306,7 @@ all at once.;
 #X connect 25 0 5 0;
 #X connect 25 1 5 0;
 #X restore 13 49 pd sensors;
-#N canvas 1051 172 376 505 init 1;
+#N canvas 883 254 376 505 init 1;
 #X obj 166 56 loadbang;
 #X msg 123 200 \; percusive 1;
 #X msg 152 130 \; plugged 1;
@@ -318,168 +322,121 @@ all at once.;
 #X obj 709 323 r dial;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array allradios 1024 float 1;
-#A 0 0 94 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#A 0 0 96 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 6 9 12 15 18 21 24 27 30
-33 36 39 42 45 48 51 54 57 60 63 66 69 72 75 78 81 84 87 90 93 96 100
-96 93 90 87 84 81 78 75 72 69 66 63 60 57 54 51 48 45 42 39 36 33 3
-7 11 14 18 22 25 29 33 37 40 44 48 51 55 59 62 66 70 74 77 81 85 88
-92 96 100 96 92 88 85 81 77 74 70 66 62 59 55 51 48 44 40 3 6 9 12
-15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60 63 66 69 72 75 78 81
-84 87 90 93 96 100 96 93 90 87 84 81 78 75 72 69 66 63 60 57 54 51
-48 45 42 39 36 33 30 27 24 21 18 15 12 9 6 3 0 0 0 0 0 0 0 0 0 0 0
+33 36 39 42 45 48 51 54 57 60 63 5 10 15 20 25 30 35 40 45 50 55 60
+65 70 75 80 85 90 95 100 95 90 85 80 75 70 65 60 55 50 45 40 35 30
+25 20 15 10 5 15 12 9 6 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90
-95 100 95 90 85 80 75 70 65 60 55 50 45 40 35 30 25 20 15 10 5 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 10 15 21 26 31 36 42 47 52 57 63
-68 73 78 84 89 94 100 94 89 84 78 73 68 63 57 52 47 42 36 31 26 21
-15 10 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 3 7 10 14 17 21 25 28 32 35 39 42 46 50 53 57 60 64 67 71
+75 78 82 85 89 92 96 100 96 92 89 85 82 78 75 71 67 64 60 57 53 50
+46 42 39 35 32 28 25 21 17 14 10 7 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 8 12 16 20 25 29
+33 37 41 45 50 54 58 62 66 70 75 79 83 87 91 95 100 95 91 87 83 79
+75 70 66 62 58 54 50 45 41 37 33 29 25 20 16 12 8 4 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 11 17 23 29 35 41
+47 52 58 64 70 76 82 88 94 100 94 88 82 76 70 64 58 52 47 41 35 29
+23 17 11 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 3 7 10 14 17 21 25 28 32 35 39 42 46 50 53 57 60 64 67 71 75
+78 82 85 89 92 96 100 96 92 89 85 82 78 75 71 67 64 60 57 53 50 46
+42 39 35 32 28 25 21 17 14 10 7 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 5 8 11 14 17 20 22 25 28 31
+34 37 40 42 45 48 51 54 57 60 62 65 68 71 74 77 80 82 85 88 91 94 97
+100 97 94 91 88 85 82 80 77 74 71 68 4 8 12 16 20 25 29 33 37 41 45
+50 54 58 62 66 70 75 79 83 87 91 95 100 95 91 87 83 79 75 70 66 62
+58 54 50 45 41 37 33 29 25 20 16 12 8 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 4 9 14 19 23 28 33 38 42 47 52 57 61 66 71 76 80 85 90 95
-100 95 90 85 80 76 71 66 61 57 52 47 42 38 33 28 23 19 14 9 4 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 7 11 15 19 23 26 30 34 38
-42 46 50 53 57 61 65 69 73 76 80 84 88 92 96 100 96 92 88 84 80 76
-73 69 65 61 57 53 50 46 42 38 34 30 26 23 19 15 11 7 3 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 10
-15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100 95 90 85 80
-75 70 65 60 55 50 45 40 35 30 25 20 15 10 5 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 3 6 9 12 15 18 21 25 28 31 34 37 40 43 46 50
-53 56 59 62 65 68 71 75 78 81 84 87 90 93 96 100 96 93 90 87 84 81
-78 75 71 68 65 62 59 56 53 50 46 43 40 37 34 31 28 25 21 18 2 5 8 11
-13 16 19 22 25 27 30 33 36 38 41 44 47 50 52 55 58 61 63 66 69 72 75
-77 80 83 86 88 91 94 97 100 97 94 91 88 86 83 80 77 75 72 69 66 63
-61 58 55 52 50 47 44 41 38 36 33 30 27 25 22 19 16 13 11 8 5 2 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 8 13 17 21
-26 30 34 39 43 47 52 56 60 65 69 73 78 82 86 91 95 100 95 91 86 82
-78 73 69 65 60 56 52 47 43 39 34 30 26 21 17 13 8 4 0 0 5 10 15 21
-26 31 36 42 47 52 57 63 68 73 78 84 89 94 100 94 89 84 78 73 68 63
-57 52 47 42 36 31 26 21 15 10 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+0 0 0 0 0 2 5 8 11 13 16 19 22 25 27 30 33 36 38 41 44 47 50 52 55
+58 61 63 66 69 72 75 77 80 83 86 88 91 94 97 100 97 94 91 88 86 83
+80 77 75 72 69 66 63 61 58 55 52 50 47 44 41 38 36 33 30 27 25 22 19
+16 13 11 8 5 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 3 6 9 12 16 19 22 25 29 32 35 38 41 45 48 51
+54 58 61 64 67 70 74 77 80 83 87 90 93 96 100 96 93 90 87 83 80 77
+74 70 67 64 61 58 54 51 48 45 41 38 35 32 29 25 22 19 16 12 9 6 3 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 6 10 13 16 20 23 26
+30 33 36 40 43 46 50 53 56 60 63 66 70 73 76 80 83 86 90 93 96 100
+96 93 90 86 83 80 76 73 70 66 63 60 56 53 50 46 43 40 36 33 30 26 23
+20 16 13 10 6 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0;
 #A 1000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 1 100 1023 1 800 200 1 0 0;
 #X restore 108 22 graph;
-#N canvas 534 158 450 300 glitches 1;
-#X obj 120 256 outlet~;
-#X obj 132 17 r dial;
-#X obj 130 188 readsf~;
-#X msg 131 146 open wavs/Effects/buzzer.wav 0;
-#X obj 134 49 route 0;
-#X obj 154 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 69 113 start;
-#X obj 187 226 *~ 0.2;
-#X connect 1 0 4 0;
-#X connect 2 0 7 0;
-#X connect 3 0 2 0;
-#X connect 4 0 5 0;
-#X connect 5 0 3 0;
-#X connect 5 0 6 0;
-#X connect 6 0 2 0;
-#X connect 7 0 0 0;
+#N canvas 194 173 450 300 glitches 1;
+#X obj 108 140 outlet~;
 #X restore 522 402 pd glitches;
-#N canvas 957 74 452 678 dialnoise 0;
+#N canvas 830 -995 922 806 dialnoise 1;
 #X obj 94 17 inlet;
-#X obj 140 559 outlet~;
+#X obj 153 575 outlet~;
 #X obj 96 89 tabread allradios;
-#X obj 205 279 soundfiler;
+#X msg 180 209 open ./wavs/Effects/static1.wav;
+#X obj 176 259 soundfiler;
 #X obj 328 558 table static;
-#X msg 206 256 read -resize \$1 static;
-#X obj 208 416 phasor~;
-#X obj 212 447 *~;
-#X obj 211 484 tabread4~ static;
-#X obj 123 259 unsig~;
-#X floatatom 120 316 5 0 0 0 - - -;
-#X obj 147 508 *~;
-#X floatatom 54 113 5 0 0 0 - - gstrength;
-#X floatatom 44 43 5 0 0 0 - - -;
+#X msg 180 233 read -resize \$1 static;
+#X obj 197 387 phasor~;
+#X obj 186 424 *~;
+#X obj 185 461 tabread4~ static;
+#X obj 85 475 unsig~;
+#X floatatom 54 554 5 0 0 0 - - -;
+#X obj 154 508 *~;
+#X floatatom 34 119 5 0 0 0 - - gstrength;
+#X floatatom 43 69 5 0 0 0 - - -;
 #X obj 23 257 unsig~;
 #X floatatom 23 308 5 0 0 0 - - -;
-#X obj 79 215 line~;
+#X obj 74 232 line~;
 #X obj 93 117 moses 15;
 #X obj 79 161 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 145 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 266 347 f;
-#X obj 281 310 expr 44100 / $f1;
-#X obj 362 452 route 3;
-#X obj 299 348 * 1.1;
-#X obj 224 349 * 0.9;
-#X floatatom 320 393 5 0 0 0 - - -;
-#X floatatom 282 416 5 0 0 0 - - -;
+#X obj 240 324 f;
+#X obj 255 287 expr 44100 / $f1;
+#X obj 336 429 route 3;
+#X obj 273 325 * 1.1;
+#X obj 198 326 * 0.9;
+#X floatatom 294 370 5 0 0 0 - - -;
+#X floatatom 256 393 5 0 0 0 - - -;
 #X obj 79 139 change;
-#X obj 341 59 f;
-#X obj 278 84 expr $f1 - $f2;
-#X floatatom 301 138 5 0 0 0 - - -;
-#X obj 313 24 t b f;
-#X obj 231 137 edge;
-#X obj 178 316 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 249 175 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 228 299 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 78 183 0.3 1000;
 #X msg 138 167 0 2000;
-#X obj 220 88 route 0;
-#X obj 369 114 r loadbang;
-#X msg 206 232 open ./wavs/Effects/static1.wav;
-#X obj 293 192 t b b b;
-#X obj 357 167 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 355 141 t b b;
 #X connect 0 0 2 0;
-#X connect 0 0 13 0;
-#X connect 0 0 31 0;
-#X connect 0 0 37 0;
-#X connect 2 0 12 0;
-#X connect 2 0 17 0;
-#X connect 3 0 7 1;
-#X connect 3 0 21 0;
-#X connect 5 0 3 0;
-#X connect 6 0 7 0;
-#X connect 6 0 9 0;
+#X connect 0 0 14 0;
+#X connect 2 0 13 0;
+#X connect 2 0 18 0;
+#X connect 3 0 6 0;
+#X connect 4 0 8 0;
+#X connect 6 0 4 0;
 #X connect 7 0 8 0;
-#X connect 8 0 11 0;
-#X connect 9 0 10 0;
-#X connect 11 0 1 0;
-#X connect 14 0 15 0;
-#X connect 16 0 11 1;
-#X connect 16 0 14 0;
-#X connect 17 0 27 0;
-#X connect 17 1 19 0;
-#X connect 18 0 35 0;
-#X connect 19 0 36 0;
-#X connect 20 0 6 0;
-#X connect 21 0 20 1;
-#X connect 21 0 23 1;
-#X connect 21 0 24 1;
-#X connect 23 0 25 0;
-#X connect 23 0 6 0;
+#X connect 8 0 9 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 12 0 1 0;
+#X connect 15 0 16 0;
+#X connect 17 0 12 1;
+#X connect 17 0 15 0;
+#X connect 18 0 28 0;
+#X connect 18 1 20 0;
+#X connect 19 0 30 0;
+#X connect 20 0 31 0;
+#X connect 21 0 7 0;
+#X connect 22 0 21 1;
+#X connect 22 0 24 1;
+#X connect 22 0 25 1;
 #X connect 24 0 26 0;
-#X connect 24 0 6 0;
-#X connect 27 0 18 0;
-#X connect 28 0 29 1;
-#X connect 29 0 30 0;
-#X connect 29 0 32 0;
-#X connect 29 0 39 0;
-#X connect 31 0 28 0;
-#X connect 31 1 28 1;
-#X connect 31 1 29 0;
-#X connect 32 0 33 0;
-#X connect 32 1 34 0;
-#X connect 33 0 20 0;
-#X connect 35 0 16 0;
-#X connect 36 0 16 0;
-#X connect 37 0 19 0;
-#X connect 38 0 42 0;
-#X connect 39 0 5 0;
-#X connect 40 0 18 0;
-#X connect 40 1 33 0;
-#X connect 40 2 39 0;
-#X connect 41 0 40 0;
-#X connect 42 0 41 0;
-#X connect 42 1 41 0;
-#X restore 842 348 pd dialnoise;
+#X connect 24 0 7 0;
+#X connect 25 0 27 0;
+#X connect 25 0 7 0;
+#X connect 28 0 19 0;
+#X connect 29 0 21 0;
+#X connect 30 0 17 0;
+#X connect 31 0 17 0;
+#X restore 811 399 pd dialnoise;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X coords 0 -1 1 1 400 200 1 0 0;
+#X restore 504 308 graph;
 #X text 533 322 Ye Olde DAC;
 #X obj 126 399 tgl 25 1 plugged plugged Plugged_In 0 -10 0 10 -204786
 -1 -258113 1 1;
@@ -494,79 +451,10 @@ all at once.;
 #X obj 217 456 tgl 25 1 empty tuninglight Tuning_Light 0 -10 0 10 -262130
 -1 -258113 0 1;
 #X floatatom 283 250 5 0 0 0 strength gstrength -;
-#N canvas 233 -860 644 705 dialnoise2 1;
-#X obj 104 27 inlet;
-#X obj 150 569 outlet~;
-#X obj 106 99 tabread allradios;
-#X obj 180 616 table static;
-#X obj 133 269 unsig~;
-#X floatatom 130 326 5 0 0 0 - - -;
-#X obj 157 518 *~;
-#X floatatom 29 127 5 0 0 0 - - gstrength;
-#X floatatom 330 68 5 0 0 0 - - -;
-#X obj 33 267 unsig~;
-#X floatatom 33 318 5 0 0 0 - - -;
-#X obj 89 225 line~;
-#X obj 103 127 moses 15;
-#X obj 89 171 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 155 154 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 12 161 change;
-#X msg 88 193 0.3 1000;
-#X msg 148 177 0 2000;
-#X obj 230 98 route 0;
-#X obj 279 436 readsf~;
-#X msg 350 405 start;
-#X obj 304 486 t b b;
-#X obj 345 143 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 397 426 open ./wavs/Effects/static1.wav 0;
-#X obj 288 563 phasor~;
-#X msg 205 355 1000;
-#X obj 207 484 lop~ 20000;
-#X msg 257 358 20000;
-#X obj 314 226 delay 200;
-#X connect 0 0 2 0;
-#X connect 0 0 8 0;
-#X connect 0 0 18 0;
-#X connect 2 0 7 0;
-#X connect 2 0 12 0;
-#X connect 4 0 5 0;
-#X connect 6 0 1 0;
-#X connect 8 0 22 0;
-#X connect 9 0 10 0;
-#X connect 11 0 6 1;
-#X connect 11 0 9 0;
-#X connect 12 0 13 0;
-#X connect 12 1 14 0;
-#X connect 13 0 16 0;
-#X connect 14 0 17 0;
-#X connect 15 0 13 0;
-#X connect 16 0 11 0;
-#X connect 17 0 11 0;
-#X connect 18 0 14 0;
-#X connect 19 0 26 0;
-#X connect 19 1 21 0;
-#X connect 20 0 19 0;
-#X connect 21 0 20 0;
-#X connect 21 1 23 0;
-#X connect 22 0 25 0;
-#X connect 22 0 28 0;
-#X connect 23 0 19 0;
-#X connect 25 0 26 1;
-#X connect 26 0 6 0;
-#X connect 27 0 26 1;
-#X connect 28 0 27 0;
-#X restore 806 401 pd dialnoise2;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X coords 0 -1 1 1 400 200 1 0 0;
-#X restore 366 302 graph;
 #X connect 0 0 5 0;
 #X connect 2 0 5 0;
 #X connect 3 0 6 0;
 #X connect 7 0 0 0;
 #X connect 7 0 10 0;
-#X connect 7 0 19 0;
 #X connect 9 0 5 0;
-#X connect 19 0 5 0;
+#X connect 10 0 5 0;
